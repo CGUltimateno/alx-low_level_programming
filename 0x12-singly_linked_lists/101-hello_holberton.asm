@@ -1,17 +1,18 @@
-section .data
-    hello db 'Hello, Holberton', 0Ah, 0
-    format db '%s', 0Ah, 0
+global _start
+
 section .text
-    global main
-    extern printf
-main:
-    push rbp
-    mov rbp, rsp
-    mov rdi, format
-    mov rsi, hello
-    xor eax, eax
-    call printf
-    mov rsp, rbp
-    pop rbp
-    xor eax, eax
-    ret
+
+_start:
+  mov rax, 1        ; write(
+  mov rdi, 1        ;   STDOUT_FILENO,
+  mov rsi, msg      ;   "Hello, world!\n",
+  mov rdx, msglen   ;   sizeof("Hello, world!\n")
+  syscall           ; );
+
+  mov rax, 60       ; exit(
+  mov rdi, 0        ;   EXIT_SUCCESS
+  syscall           ; );
+
+section .rodata
+  msg: db "Hello, Holberton!", 10
+  msglen: equ $ - msg
