@@ -9,38 +9,38 @@
  */
 int _atoi(char *s)
 {
-	int a, b, c, length, d, digit;
+	int x, d, n, length, f, dig;
 
-	a = 0;
-	b = 0;
-	c = 0;
-	length = 0;
+	x = 0;
 	d = 0;
-	digit = 0;
+	n = 0;
+	length = 0;
+	f = 0;
+	dig = 0;
 
 	while (s[length] != '\0')
 		length++;
 
-	while (a < length && d == 0)
+	while (x < length && f == 0)
 	{
-		if (s[a] == '-')
-			++b;
+		if (s[x] == '-')
+			++d;
 
-		if (s[a] >= '0' && s[a] <= '9')
+		if (s[x] >= '0' && s[x] <= '9')
 		{
-			digit = s[a] - '0';
+			dig = s[x] - '0';
 			if (d % 2)
-				digit = -digit;
-			c = c * 10 + digit;
-			d = 1;
-			if (s[a + 1] < '0' || s[a + 1] > '9')
+				dig = -dig;
+			n = n * 10 + dig;
+			f = 1;
+			if (s[x + 1] < '0' || s[x + 1] > '9')
 				break;
-			d = 0;
+			f = 0;
 		}
-		a++;
+		x++;
 	}
 
-	if (d == 0)
+	if (f == 0)
 		return (0);
 
 	return (n);
@@ -54,7 +54,7 @@ int _atoi(char *s)
  */
 int main(int argc, char *argv[])
 {
-	int result, num1, num2;
+	int result, number1, number2;
 
 	if (argc < 3 || argc > 3)
 	{
@@ -62,9 +62,9 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	num1 = _atoi(argv[1]);
-	num2 = _atoi(argv[2]);
-	result = num1 * num2;
+	number1 = _atoi(argv[1]);
+	number2 = _atoi(argv[2]);
+	result = number1 * number2;
 
 	printf("%d\n", result);
 
