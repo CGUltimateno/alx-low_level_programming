@@ -11,18 +11,18 @@
 int check_num(char *str)
 {
 	/*Declaring variables*/
-	unsigned int count;
+	unsigned int c;
 
-	count = 0;
+	c = 0;
 	while (count < strlen(str)) /*count string*/
 
 	{
-		if (!isdigit(str[count])) /*check if str there are digit*/
+		if (!isdigit(str[c])) /*check if str there are digit*/
 		{
 			return (0);
 		}
 
-		count++;
+		c++;
 	}
 	return (1);
 }
@@ -40,17 +40,17 @@ int main(int argc, char *argv[])
 {
 
 	/*Declaring variables*/
-	int count;
+	int c;
 	int str_to_int;
 	int sum = 0;
 
-	count = 1;
-	while (count < argc) /*Goes through the whole array*/
+	c = 1;
+	while (c < argc) /*Goes through the whole array*/
 	{
-		if (check_num(argv[count]))
+		if (check_num(argv[c]))
 
 		{
-			str_to_int = atoi(argv[count]); /*ATOI --> convert string to int*/
+			str_to_int = atoi(argv[c]); /*ATOI --> convert string to int*/
 			sum += str_to_int;
 		}
 
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 			return (1);
 		}
 
-		count++;
+		c++;
 	}
 
 	printf("%d\n", sum); /*print sum*/
