@@ -8,11 +8,11 @@
  * @age: age to initialize
  * @owner: owner to initialize
  */
-void init_dog(struct dog *dog, char *name, float age, char *owner)
+void init_dog(struct dog *d, char *name, float age, char *owner)
 {
-	if (dog == NULL)
-		dog = malloc(sizeof(struct dog));
-	dog->name = name;
-	dog->age = age;
-	dog->owner = owner;
+	if (d == NULL)
+		d = malloc(sizeof(struct dog));
+	d->name = name;
+	d->age = age;
+	d->owner = owner;
 }
