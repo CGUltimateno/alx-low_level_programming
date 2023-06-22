@@ -7,15 +7,15 @@
  * @action: pointer to print in regular or hex
  * Return: void
  */
-void array_iterator(int *array, size_t size, void (*action)(int))
+void array_iterator(int *a, size_t size, void (*x)(int))
 {
 	unsigned int i;
 
-	if (array == NULL || action == NULL)
+	if (a == NULL || x == NULL)
 		return;
 
 	for (i = 0; i < size; i++)
 	{
-		action(array[i]);
+		x(a[i]);
 	}
 }

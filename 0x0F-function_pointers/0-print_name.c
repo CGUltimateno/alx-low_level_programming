@@ -6,10 +6,10 @@
  * @f: pointer to function
  * Return: nothing
  **/
-void print_name(char *name, void (*f)(char *))
+void print_name(char *n, void (*f)(char *))
 {
-	if (name == NULL || f == NULL)
+	if (n == NULL || f == NULL)
 		return;
 
-	f(name);
+	f(n);
 }
