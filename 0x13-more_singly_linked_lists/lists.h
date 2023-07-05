@@ -34,5 +34,3 @@ listint_t *find_listint_loop(listint_t *head);
 int _putchar(char c);
 
 #endif /*LISTS_H*/
-
-// by CG
