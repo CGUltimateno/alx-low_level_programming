@@ -14,14 +14,14 @@ unsigned long int i;
 
 y = malloc(sizeof(hash_table_t));
 if (y == NULL)
-    return (NULL);
+return (NULL);
 
 y->size = size;
 y->array = malloc(sizeof(hash_node_t *) * size);
 if (y->array == NULL)
-    return (NULL);
+return (NULL);
 for (i = 0; i < size; i++)
-    y->array[i] = NULL;
+y->array[i] = NULL;
 
 return (y);
 }
