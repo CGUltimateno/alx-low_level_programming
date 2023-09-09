@@ -20,6 +20,9 @@ void free_list(hash_node_t *head)
 }
 /**
  * hash_table_delete - Deletes a hash table
+ *  @ht: Pointer to the hash table (hash_table_t *)
+ *
+ * Return: Void.
  */
 void hash_table_delete(hash_table_t *ht)
 {
