@@ -1,6 +1,8 @@
 #include "hash_tables.h"
 /**
  * hash_table_get - Get the value from a hash table
+ * @ht: Pointer to the hash table (hash_table_t *)
+ * Return: Void.
  */
 char *hash_table_get(const hash_table_t *ht, const char *key)
 {
