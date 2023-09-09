@@ -1,6 +1,9 @@
 #include "hash_tables.h"
 /**
  * free_list - Free a list.
+ *  @head: Pointer to the head of a linked list
+ *
+ * Return: Void.
  */
 void free_list(hash_node_t *head)
 {
