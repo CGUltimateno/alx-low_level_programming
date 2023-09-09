@@ -1,42 +1,47 @@
 #include "hash_tables.h"
 /**
  * hash_table_set - Adds an element to the hash table.
+ * @ht: Pointer to the hash table.
+ * @key: Key to set in the hash table.
+ * @value: Value to save in the hash table.
+ * Return: 1 if it succeeded, 0 otherwise.
  */
 
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-    unsigned long int index;
-    hash_node_t *node = NULL, *add_node = NULL, *tmp = NULL;
+    hash_node_t *newNode;
+    char *valueCopy;
+    unsigned long int index, i;
 
-    if (ht == NULL || key == NULL || value == NULL)
+    if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
         return (0);
 
-    index = key_index((unsigned char *)key, ht->size);
-    node = ht->array[index];
-    if (node != NULL)
-    {
-        node = malloc(sizeof(hash_node_t));
-        if (!node)
-            return (false);
-        node->key = strdup(key), node->value = strdup(value);
-        node->next = NULL;
-        ht->array[index] = node;
-        return (true);
+    valueCopy = strdup(value);
+    if (valueCopy == NULL)
+        return (0);
+
+    index = key_index((const unsigned char *)key, ht->size);
+    for (i = index; ht->array[i]; i++) {
+        if (strcmp(ht->array[i]->key, key) == 0) {
+            free(ht->array[i]->value);
+            ht->array[i]->value = valueCopy;
+            return (1);
+        }
     }
 
-    for(tmp = node; tmp != NULL; tmp = tmp->next)
-    {
-        if (strcmp(tmp->key, key) == 0)
-        {
-            free(tmp->value), tmp->value = (strdup(value));
-            return (true);
-        }
-        add_node = malloc(sizeof(hash_node_t));
-        if (!add_node)
-            return (false);
-        add_node->key = strdup(key), add_node->value = strdup(value);
-        add_node->next = node;
-        ht->array[index] = add_node;
+    newNode = malloc(sizeof(hash_node_t));
+    if (newNode == NULL) {
+        free(valueCopy);
+        return (0);
     }
+    newNode->key = strdup(key);
+    if (newNode->key == NULL) {
+        free(newNode);
+        return (0);
+    }
+    newNode->value = valueCopy;
+    newNode->next = ht->array[index];
+    ht->array[index] = newNode;
+
     return (1);
 }
