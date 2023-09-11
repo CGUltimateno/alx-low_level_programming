@@ -24,7 +24,7 @@ return (NULL);
 if (strcmp(node->key, key) == 0)
 return (node->value);
 
-for(tmp = node; tmp; tmp = tmp->next)
+for (tmp = node; tmp; tmp = tmp->next)
 if (strcmp(tmp->key, key) == 0)
 return (tmp->value);
 
