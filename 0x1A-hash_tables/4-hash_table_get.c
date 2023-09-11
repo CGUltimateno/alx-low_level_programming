@@ -9,8 +9,8 @@
 char *hash_table_get(const hash_table_t *ht, const char *key)
 {
     unsigned long int index;
-    hash_node_t *node;
-    hash_node_t *tmp;
+    hash_node_t *node = NULL;
+    hash_node_t *tmp = NULL;
 
     if (ht == NULL || key == NULL || !ht->array)
         return (NULL);
