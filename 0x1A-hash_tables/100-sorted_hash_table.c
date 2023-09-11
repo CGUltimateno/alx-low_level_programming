@@ -17,22 +17,18 @@ shash_table_t *shash_table_create(unsigned long int size)
 {
 shash_table_t *table;
 unsigned long int i;
-
 table = malloc(sizeof(shash_table_t));
 if (table == NULL)
 return (NULL);
-
 table->size = size;
 table->array = malloc(sizeof(shash_node_t *) * size);
 if (table->array == NULL)
 {
-free(table)
+free(table);
 return (NULL);
 }
-
 for (i = 0; i < size; i++)
 table->array[i] = NULL;
-
 table->shead = NULL;
 table->stail = NULL;
 
@@ -51,13 +47,10 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 unsigned long int index = 0;
 shash_node_t *newNode = NULL, *tmp = NULL;
-
 if (ht == NULL || key == NULL || value == NULL)
 return (0);
-
 index = key_index((const unsigned char *)key, ht->size);
 tmp = ht->array[index];
-
 while (tmp != NULL)
 {
 if (strcmp(tmp->key, key) == 0)
@@ -71,12 +64,10 @@ tmp = tmp->next;
 newNode = malloc(sizeof(shash_node_t));
 if (newNode == NULL)
 return (0);
-
 newNode->key = strdup(key);
 newNode->value = strdup(value);
 newNode->next = ht->array[index];
 ht->array[index] = newNode;
-
 if (ht->shead == NULL)
 {
 newNode->sprev = NULL;
@@ -121,11 +112,8 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 {
 shash_node_t *node;
 unsigned long int index;
-
 if (ht == NULL || key == NULL || *key == '\0')
 return (NULL);
-
-
 index = key_index((const unsigned char *)key, ht->size);
 if (index >= ht->size)
 return (NULL);
@@ -143,8 +131,6 @@ return ((node == NULL) ? NULL : node->value);
 void shash_table_print(const shash_table_t *ht)
 {
 shash_node_t *node;
-
-
 if (ht == NULL)
 return;
 node = ht->shead;
@@ -166,12 +152,9 @@ printf("}\n");
 
 void shash_table_print_rev(const shash_table_t *ht)
 {
-
 shash_node_t *node;
-
 if (ht == NULL)
 return;
-
 node = ht->stail;
 printf("{");
 while (node != NULL)
@@ -193,7 +176,6 @@ void shash_table_delete(shash_table_t *ht)
 {
 shash_table_t *head = ht;
 shash_node_t *node, *tmp;
-
 if (ht == NULL)
 return;
 
@@ -201,7 +183,6 @@ return;
 node = ht->shead;
 while (node)
 {
-
 tmp = node->snext;
 free(node->key);
 free(node->value);
