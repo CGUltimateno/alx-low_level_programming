@@ -4,7 +4,8 @@
  *   @ht: Pointer to the hash table (hash_table_t *)
  * Return: Void.
  */
-void hash_table_print(const hash_table_t *ht) {
+void hash_table_print(const hash_table_t *ht)
+{
 unsigned long int i;
 int flag = 0;
 hash_node_t **arr = NULL;
@@ -18,20 +19,20 @@ arr = ht->array;
 printf("{");
 for (i = 0; i < ht->size; i++)
 {
-if(ht->array[i] != NULL)
+if (ht->array[i] != NULL)
 {
 flag++;
 if (flag == 2)
 printf(", "), flag = 1;
 printf("'%s': '%s'", arr[i]->key, arr[i]->value);
 node = arr[i]->next;
-if(node)
+if (node)
 {
 printf(", ");
-for(; node; node = node->next)
+for (; node; node = node->next)
 {
 printf("'%s': '%s'", node->key, node->value);
-if(node->next)
+if (node->next)
 printf(", ");
 }
 }
