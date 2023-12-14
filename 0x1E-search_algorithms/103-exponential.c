@@ -26,7 +26,6 @@ high = mid - 1;
 }
 return (-1);
 }
-
 /**
  * exponential_search - searches for a value in a sorted array of integers
  * using the Exponential search algorithm
