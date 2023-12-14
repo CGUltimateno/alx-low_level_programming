@@ -38,7 +38,7 @@ return (-1);
 int exponential_search(int *array, size_t size, int value)
 {
 size_t i = 0, bound = 1;
-if(!array)
+if (!array)
 return (-1);
 while (bound < size)
 {
