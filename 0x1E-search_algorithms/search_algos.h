@@ -1,5 +1,5 @@
-#ifndef INC_5_ISLAND_PERIMETER_PY_SEARCH_ALGOS_H
-#define INC_5_ISLAND_PERIMETER_PY_SEARCH_ALGOS_H
+#ifndef SEARCH_ALGOS_H
+#define SEARCH_ALGOS_H
 #include <stdio.h>
 #include <stddef.h>
 
@@ -34,4 +34,4 @@ typedef struct skiplist_s
 
 int linear_search(int *array, size_t size, int value);
 int binary_search(int *array, size_t size, int value);
-#endif //INC_5_ISLAND_PERIMETER_PY_SEARCH_ALGOS_H
+#endif
