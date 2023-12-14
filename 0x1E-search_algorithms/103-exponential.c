@@ -7,24 +7,22 @@
  * @value: value to search for
  * Return: first index where value is located or -1 if value is not present
  */
-int _binary_search(int *array, size_t left, size_t right, int value)
+int _binary_search(int *array, int low, int high, int value)
 {
-    size_t i, mid = 0;
-    if (array == NULL)
-        return (-1);
-    while (left <= right)
+    int mid, index;
+    while (low <= high)
     {
         printf("Searching in array: ");
-        for (i = left; i < right; i++)
-            printf("%d, ", array[i]);
-        printf("%d\n", array[i]);
-        mid = (left + right) / 2;
+        for (index = low; index < high; index++)
+            printf("%d, ", array[index]);
+        printf("%d\n", array[index]);
+        mid = (low + high) / 2;
         if (array[mid] == value)
             return (mid);
-        else if (array[mid] > value)
-            right = mid - 1;
+        else if (array[mid] < value)
+            low = mid + 1;
         else
-            left = mid + 1;
+            high = mid - 1;
     }
     return (-1);
 }
@@ -39,16 +37,21 @@ int _binary_search(int *array, size_t left, size_t right, int value)
  */
 int exponential_search(int *array, size_t size, int value)
 {
-    size_t i = 0, bound;
-
-    if (array == NULL || size == 0)
+    size_t i = 0, bound = 1;
+    if(!array)
         return (-1);
-    if (array[0] != value)
+    while (bound < size)
     {
-        for (i = 1; i < size && array[i] <= value; i = i * 2)
-            printf("Value checked array[%zu] = [%d]\n", i, array[i]);
+        printf("Value checked array[%lu] = [%d]\n", bound, array[bound]);
+        if (array[bound] >= value)
+            break;
+        i = bound;
+        bound *= 2;
     }
-    bound = i < size ? i : size - 1;
-    printf("Value found between indexes [%zu] and [%zu]\n", i / 2, bound);
-    return (_binary_search(array, i / 2, bound, value));
+    printf("Value found between indexes [%lu] and [%lu]\n", bound / 2,
+            (bound > size - 1 ? size - 1 : bound));
+
+    i = bound / 2;
+    bound = (bound > size - 1 ? size - 1 : bound);
+    return (_binary_search(array, i, bound, value));
 }
