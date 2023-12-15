@@ -10,25 +10,25 @@ int rec_search(int *array, size_t size, int value)
 {
 size_t i = 0;
 size_t x = size / 2;
-if (size == 0)
+if (size == 0 || array == NULL)
 return (-1);
 printf("Searching in array: ");
 for (i = 0; i < size; i++)
 {
 printf("%s %d", (i == 0) ? ":" : ",", array[i]);
 }
-printf("\n");
 if (x && size % 2 == 0)
-x -= 1;
+x--;
 if (array[x] == value)
-return (x);
-else if (array[x] > value)
-return (rec_search(array, x + 1, value));
-else
 {
+if (x > 0)
+return (rec_search(array, x + 1, value));
+return ((int)x);
+}
+if (array[x] > value)
+return (rec_search(array, x + 1, value));
 x++;
 return (x + rec_search(array + x, size - x, value));
-}
 }
 
 /**
