@@ -8,27 +8,32 @@
  */
 int rec_search(int *array, size_t size, int value)
 {
-size_t i = 0;
-size_t x = size / 2;
-if (size == 0 || array == NULL)
-return (-1);
+size_t i, mid;
 printf("Searching in array: ");
 for (i = 0; i < size; i++)
 {
-printf("%s %d", (i == 0) ? ":" : ",", array[i]);
+printf("%d", array[i]);
+if (i < size - 1)
+printf(", ");
+else
+printf("\n");
 }
-if (x && size % 2 == 0)
-x--;
-if (array[x] == value)
+mid = (size - 1) / 2;
+if (array[mid] == value)
 {
-if (x > 0)
-return (rec_search(array, x + 1, value));
-return ((int)x);
+if (size == 1 || array[mid - 1] < value)
+return (mid);
 }
-if (array[x] > value)
-return (rec_search(array, x + 1, value));
-x++;
-return (x + rec_search(array + x, size - x, value));
+if (size == 1)
+return (-1);
+if (array[mid] < value)
+{
+return (rec_search(array + mid + 1, size - mid - 1, value) + mid + 1);
+}
+else
+{
+return (rec_search(array, mid + 1, value));
+}
 }
 
 /**
@@ -41,11 +46,8 @@ return (x + rec_search(array + x, size - x, value));
 
 int advanced_binary(int *array, size_t size, int value)
 {
-int i;
-i = rec_search(array, size, value);
-
-if (i >= 0 && array[i] != value)
+if (size == 0 || array == NULL)
 return (-1);
 
-return (i);
+return (rec_search(array, size, value));
 }
